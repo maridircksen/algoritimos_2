@@ -1,0 +1,106 @@
+{1) Criar um algoritmo para ler uma matriz de tamanho M10 X 10 de elementos inteiros. Na sequência, o 
+algoritmo deve: 
+- Trocar a segunda linha pela oitava linha
+- Escrever o maior elemento da matriz}
+Program ex_prova;                                                                                                                                                                                 
+ var a: array [1..10,1..10] of integer;
+ 		i,j,maior,aux: integer;
+		                                                                                                        
+Begin
+	for i:= 1 to 10 do
+		for j:= 1 to 10 do
+		   a[i,j]:= random(150)+1;
+		   
+		  
+	for i:= 1 to 10 do
+		for j:= 1 to 10 do
+	  	begin 
+			   gotoxy(j*5+5, i*2+1);
+      	 write(a[i,j]);
+      end;
+			
+	maior:=a[i,j];
+ clrscr;
+	for i:= 1 to 10 do
+		for j:= 1 to 10 do 
+		 if a[i,j]> maior then
+		 	maior:= a[i,j];
+		write(maior);
+		
+		for j:= 1 to 10 do
+		begin
+			aux:=a[2,j];
+			a[2,j]:=a[8,j];
+			a[8,j]:=aux;
+		end;
+		for i:= 1 to 10 do
+			for j:= 1 to 10 do
+			begin
+				gotoxy(j*5+5, i*2+1);
+				write(a[i,j]);
+			end;
+			
+  
+End.
+
+{Faça um algoritmo qe leia uma matriz A (ordem 8x8) e um vetor V(20 elementos). O algoritmo deve 
+-ler a matriz
+-ler o vetor
+-calcular a média dos elementos da matriz
+-escrever quantos elementos de V são maiores que a média da matriz }
+Program ex_prova_2 ;
+	var a: array[1..3,1..3] of integer;
+			i,j,t,media,soma,cont: integer;
+			v: array [1..20] of integer;
+			
+Begin
+	soma:=0;
+	for i:= 1 to 3 do
+		for j:= 1 to 3 do
+			begin
+				a[i,j]:= random(20);
+				soma:= soma+a[i,j];
+			end;
+			for i:= 1 to 3 do
+				for j:= 1 to 3 do 
+				begin
+					 gotoxy(j*3+3, i*2+1);
+      	   write(a[i,j]);
+				end;
+			writeln;
+			media:= soma div 9; //9= dimensão da matriz 3x3=9, 8x8= 64
+			cont:=0;
+			for t := 1 to 0 do
+			begin
+				v[t]:=random(20);
+				write(v[t],' ') ; 
+				cont:=cont+1;
+			end;
+			writeln;
+			writeln('A média é',' ', Media,' ','números repetidos',' ', cont);
+end.
+
+{Escreve um algoritmo, que leia dois números inteiros e positivos e determine o resultado
+da multiplicação dos mesmos, utilizando o seguinte método:
+Divida sucessivamente o primeiro número por 2(divisão por inteiros) até que se obtenha 1 como quociente
+-Paralelamente, dobre, sucessivamente o valor do segundo número.
+-Soma os números da segunda coluna que tenham como correspondente na primeira coluna um numero impar.
+O total obtido é produto procurado}
+Program ex_prova_3;
+
+	var n1,n2,soma:integer;
+	
+Begin                                                                                                                              
+	read(n1,n2);
+	soma:=0;
+	while n1>=1 do
+	begin
+		if n1 mod 2=1 then
+			soma:= soma+n2;
+		
+		n1:= n1 div 2;
+		n2:= n2*2
+  end;
+  
+  write(soma);
+End.

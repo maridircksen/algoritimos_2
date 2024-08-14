@@ -1,0 +1,5 @@
+Program primos ;
+	
+Begin
+  
+End.

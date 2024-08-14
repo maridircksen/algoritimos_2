@@ -1,0 +1,377 @@
+//1 - Fazer um algoritmo para ler 10 números, calcular a média e informar quantos elementos são maiores que a posição
+Program Pzim ;
+var v: array[1..10] of integer;
+    i, soma,cont:integer;
+    media:real;
+    
+Begin
+  clrscr;
+  for i:= 1 to 10 do
+  begin
+    write ('Informe o elemento da posição ',i,' ');
+    readln (v[i]);
+    soma:=soma + v[i];
+    if v[i] > i then
+      cont:=cont + 1;
+  end;
+  media:= soma/10;
+  writeln ('Media: ', media:5:2);
+  writeln ('Maiores que a posição ', cont)
+End.
+
+
+//2 - Fazer um algoritmo para ler 10 elementos, armazene-os em um vetor e depois classifique-os
+Program Pzim ;
+var v: array[1..10] of integer;
+    i, j, aux: integer;
+   
+Begin
+  clrscr;
+  for i:= 1 to 10 do
+    v[i]:=random(50);   
+  writeln ('---------------------------------------------------');
+  for i:= 1 to 10 do
+    write ('|',v[i]:3,' ');
+  writeln ('|');  
+  writeln ('---------------------------------------------------');
+  for i:= 1 to 9 do
+    for j:= 1 to 9 do
+      if v[j] > v[j+1] then
+      begin
+         aux:=v[j];
+         v[j]:=v[j+1];
+         v[j+1]:= aux;
+      end;
+  writeln;
+  writeln ('---------------------------------------------------');
+  for i:= 1 to 10 do
+    write ('|',v[i]:3,' ');
+  writeln ('|');  
+  writeln ('---------------------------------------------------');
+  
+End.
+
+
+//Bolha
+Program Pzim ;
+var v: array[1..100] of integer;
+    i, j, n, aux, troca,ultima_troca: integer;
+   
+Begin
+  clrscr;
+  writeln ('Informe o tamanho do vetor');
+  readln(n);
+  for i:= 1 to n do
+    v[i]:=random(50);   
+  writeln ('---------------------------------------------------');
+  for i:= 1 to n do
+    write ('|',v[i]:3,' ');
+  writeln ('|');  
+  writeln ('---------------------------------------------------');
+  
+	//BUBBLE SORT
+	ultima_troca:= n-1;
+  troca:=1;
+  while troca >0 do
+	begin
+	  troca:=0;
+    for j:= 1 to ultima_troca do
+      if v[j] > v[j+1] then
+      begin
+         aux:=v[j];
+         v[j]:=v[j+1];
+         v[j+1]:= aux;
+         troca:=j
+      end;
+    ultima_troca:=troca-1 
+  end;
+  writeln;
+  writeln ('---------------------------------------------------');
+  for i:= 1 to n do
+    write ('|',v[i]:3,' ');
+  writeln ('|');  
+  writeln ('---------------------------------------------------');
+  
+End.
+
+
+//Pesquisa Binária
+Program Pzim ;
+var v: array[1..100] of integer;
+    i, j, n, aux, troca,ultima_troca: integer;
+    inicio, fim, meio, achou, x:integer;
+   
+Begin
+  clrscr;
+  writeln ('Informe o tamanho do vetor');
+  readln(n);
+  for i:= 1 to n do
+    v[i]:=random(50);   
+  writeln ('---------------------------------------------------');
+  for i:= 1 to n do
+    write ('|',v[i]:3,' ');
+  writeln ('|');  
+  writeln ('---------------------------------------------------');
+  
+	//BUBBLE SORT
+	ultima_troca:= n-1;
+  troca:=1;
+  while troca >0 do
+	begin
+	  troca:=0;
+    for j:= 1 to ultima_troca do
+      if v[j] > v[j+1] then
+      begin
+         aux:=v[j];
+         v[j]:=v[j+1];
+         v[j+1]:= aux;
+         troca:=j
+      end;
+    ultima_troca:=troca-1 
+  end;
+  writeln;
+  writeln ('---------------------------------------------------');
+  for i:= 1 to n do
+    write ('|',v[i]:3,' ');
+  writeln ('|');  
+  writeln ('---------------------------------------------------');
+  readkey;
+  writeln;
+  writeln ('Informe o valor a ser pesquisado');
+  readln(x);
+  inicio:=1;
+  fim:=n;
+  achou:=0;
+  meio:= (inicio + fim) div 2;
+  while (inicio <= fim) and (achou=0) do
+  begin
+     if v[meio] = x then 
+        achou:=meio
+     else if v[meio] < x then
+            inicio:= meio+1
+          else
+					  fim:= meio-1;
+     meio:= (inicio + fim) div 2;			  
+  end;
+	if achou <> 0 then
+	   Writeln ('Elemento encontrado na posição ', meio)
+	else
+	   writeln ('Elemento não encontrado');
+  writeln;
+end.  
+            
+//3 - Faça um algoritmo que leia uma frase (no máximo 80 caracteres) e informe quantas letras "A" e "O" 
+existem na mesma. A frase deve ser finalizada com um ponto.
+Program Pzim ;
+var frase: string[80];
+    i, q_A, q_O: integer;
+   
+Begin
+  clrscr;
+  writeln ('Informe uma frase');
+  readln(frase);
+  i:=1;
+  while frase[i] <> '.' do
+  begin
+    if frase[i] = 'A' then
+      q_A:=q_A + 1
+    else if frase[i] = 'O' then
+      q_O:=q_O + 1;     
+    i:=i+1
+  end;
+  writeln ('A = ',q_A);
+  writeln ('O = ',q_O);  
+End.
+
+//4 - Faça um algoritmo que leia uma frase com 200 caracteres, a qual deve ser finalizada com ponto,
+// e informe quantas vezes cada caracter letra aparece na frase. 
+Program Pzim ;
+var frase: string[200];
+    caract: char;
+    letras: array[65..90] of integer;
+    i, q_espaco: integer;
+   
+Begin
+  clrscr;
+  writeln ('Informe uma frase');
+  readln(frase);
+  for i:=1 to 200 do
+     frase[i]:=upcase (frase[i]);
+  i:=1;
+  while frase[i] <> '.' do
+  begin
+     if frase[i] = ' ' then
+       q_espaco:=q_espaco + 1
+     else
+       letras[ord(frase[i])] := letras[ord(frase[i])] + 1;
+     i:=i+1
+  end;
+  writeln ('Espaços = ', q_espaco);
+  for I:= 65 to 90 do
+    if letras[i]>0 then
+      writeln (chr(i), ' = ', letras[i]);
+  writeln;
+End.
+
+//5 - Fazer um algoritmo para ler e escrever uma matriz de ordem 4
+Program exempl2_matriz;
+  const N=4;
+  var A: array [1..N,1..N] of real;
+      L,C:integer;
+      soma:real;
+      
+Begin
+  soma:=0;
+  for L:=1 to N do
+    for C:= 1 to N do
+    begin
+       write ('Informe elemento [',L,',',C,'] da matriz ');
+       readln (A[L,C]);       
+    end;
+
+  //Gotoxy posiciona o cursor na Coluna, Linha    
+  clrscr; //limpar os dados da tela do computador
+  for L:=1 to N do    
+    for C:= 1 to N do
+    begin
+       gotoxy (C*8+5, L*2+1);
+       write (A[L,C]:2:2);
+       soma:=soma + A [L,C]
+    end;
+  readkey;
+  gotoxy (10, 20);
+  writeln ('Soma = ',soma);  
+End.
+
+
+Diagonal Principal
+Program diagonal_principal ;
+const n=3;
+	var i,j: integer;
+	a: array[0..n, 0..n] of integer;
+Begin
+	//write('Informe o elemento A');
+	for i:=1 to n do
+		for j:= 1 to n do
+			//readln(a[i,j]);
+			a[i,j]:= random(20)+1;
+//clrscr;
+	for i:= 1 to n do
+		for j:= 1 to n do
+		begin 
+			 gotoxy(j*3+3, i*2+1);
+      	 write(a[i,j]);
+		end;
+		begin
+			for i:= 1 to n do
+			for j:= 1 to n do
+				if i=j then			
+					 	begin					 	  
+					 		gotoxy(j*3+3+20, i*2+1);
+      			  write(a[i,i]);
+						end;
+					 		
+			 				
+			 				
+		end;
+end.
+
+Diagonal Secundária
+
+Program diagonal_secundaria ;
+const n=3;
+	var i,j: integer;
+	a: array[0..n, 0..n] of integer;
+Begin
+	write('Informe o elemento A');
+	for i:=1 to n do
+		for j:= 1 to n do
+			readln(a[i,j]);
+clrscr;
+	for i:= 1 to n do
+		for j:= 1 to n do
+		begin 
+			 gotoxy(j*3+3, i*2+1);
+      	 write(a[i,j]);
+		end;
+		begin
+			for i:= 1 to n do
+			for j:= 1 to n do
+				if (i+j)=(n+1) then
+					 	begin
+					 		gotoxy(j*3+3+20, i*2+1);
+      			  write(a[i,j]);
+						end;
+					 		
+			 				
+			 				
+		end;
+end.
+
+Triangular superior
+
+Program trangular_superior ;
+const n=3;
+	var i,j: integer;
+	a: array[0..n, 0..n] of integer;
+Begin
+	write('Informe o elemento A');
+	for i:=1 to n do
+		for j:= 1 to n do
+			readln(a[i,j]);
+clrscr;
+	for i:= 1 to n do
+		for j:= 1 to n do
+		begin 
+			 gotoxy(j*3+3, i*2+1);
+      	 write(a[i,j]);
+		end;
+		begin
+			for i:= 1 to n do
+			for j:= 1 to n do
+				if i>j then
+					for j:= 1 to n do 
+					 for i:=(j+1) to n do
+					 	begin
+					 		gotoxy(j*3+3+20, i*2+1);
+      			  write(a[i,j]);
+						end;
+					 		
+			 				
+			 				
+		end;
+end.
+
+
+Triangular inferior
+Program trangular_inferior ;
+const n=3;
+	var i,j: integer;
+	a: array[1..n, 1..n] of integer;
+Begin
+	write('Informe o elemento A');
+	for i:=1 to n do
+		for j:= 1 to n do
+			readln(a[i,j]);
+clrscr;
+	for i:= 1 to n do
+		for j:= 1 to n do
+		begin 
+			 gotoxy(j*3+3, i*2+1);
+      	 write(a[i,j]);
+		end;
+		begin
+			for i:= 1 to n do
+			for j:= 1 to n do
+				if i<j then
+					for i:= 1 to n do 
+					 for j:=(i+1) to n do
+					 	begin
+					 		gotoxy(j*3+3+20, i*2+1);
+      			  write(a[i,j]);
+						end;
+					 		
+			 				
+			 				
+		end;
+end.
